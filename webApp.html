@@ -55,7 +55,7 @@
 	display:none;
     float: left;
     text-align: center;
-    width: 120px;
+    width: 500px;
     margin: 4px;
     padding: 6px;
 }
@@ -76,13 +76,14 @@ function addProject() {
     var button = document.createElement("input");
     var id = idProj;
   	button.id = $("#Title").val();
-    button.value = $("#Title").val();
+    button.value = $('#Title').val();
   	button.type = "button";
   	button.onclick= function(){
       goToPage(id,"homepage");
     };  
     var element = document.getElementById("projectList");
 	element.appendChild(button);
+    //Homepage button
     var backToHomePage = document.createElement("input");
     backToHomePage.value = "Home Page";
   	backToHomePage.type = "button";
@@ -91,6 +92,62 @@ function addProject() {
     };
     var element2 = document.getElementById(idProj);
 	element2.appendChild(backToHomePage);
+    
+    //Remove project button
+    var Delete = document.createElement("input");
+    Delete.value = "Delete project";
+  	Delete.type = "button";
+  	Delete.onclick= function(){
+      goToPage("homepage",id);
+      document.getElementById(button.id).style.display = "none";
+    };
+    var element2 = document.getElementById(idProj);
+	element2.appendChild(Delete);
+    
+    // new task button
+    var idNewTaskPage = "task"+id
+    var taskDescriptionId = 'taskDescription'+idNewTaskPage
+    $("<div class='newtaskpage' id='"+idNewTaskPage+"'> <h1> New task</h1>  Description:<br><input id='"+taskDescriptionId +"' type='text' name='Descirption'><br><br></div>").appendTo(document.body);
+    var description = document.createElement("input");
+    description.id = taskDescriptionId
+    document.getElementById(idNewTaskPage).style.display = "none";
+    var newTaskButton = document.createElement("input");
+    newTaskButton.value = "New task";
+  	newTaskButton.type = "button";
+  	newTaskButton.onclick= function(){
+      goToPage(idNewTaskPage,id);
+    };
+    var element3 = document.getElementById(idProj);
+	element3.appendChild(newTaskButton);
+    
+    // addTaskButton
+    var newTaskButton = document.createElement("input");
+    newTaskButton.value = "Add task";
+  	newTaskButton.type = "button";
+  	newTaskButton.onclick= function(){
+      // task adding
+      var para = document.createElement("p");
+      var t = document.createTextNode("");
+      para.appendChild(t);
+      document.getElementById(id).appendChild(para);
+      
+      var para = document.createElement("h");
+      var t = document.createTextNode(document.getElementById(taskDescriptionId).value);
+      para.appendChild(t);
+      document.getElementById(id).appendChild(para);
+      
+      var newTask = document.createElement("input");
+      newTask.value = "task";
+  	  newTask.type = "checkbox";
+      var element5 = document.getElementById(id);
+	  element5.appendChild(newTask);
+
+      goToPage(id, idNewTaskPage);
+    };
+    var element4 = document.getElementById(idNewTaskPage);
+	element4.appendChild(newTaskButton);
+    
+    
     goToPage('homepage','newlistpage');    
     idProj = idProj + 1;
 }
@@ -105,11 +162,11 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 <div class="homepage" id="homepage"> 
 <h1> CoToDo </h1>
 <h> <div id="projectList"> Project list <br> </div></h><br>
-<button onclick="goToPage('newlistpage','homepage')"> New List</button>
+<button onclick="goToPage('newlistpage','homepage')"> New Project</button>
 </div>
 
 <div class="newlistpage" id="newlistpage">
-<h2> New List Page </h2> 
+<h2> New Project Page </h2> 
   Title:<br>
   <input id="Title" type="text" name="Title"><br>
   Description:<br>
@@ -119,7 +176,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 
 
 <div class="newtaskpage" id="newtaskpage">
-<h2> New task page </h2> 
 </div>
 <div class="changelistpage" id="changelistpage">
 <h2> Change list page </h2> 
