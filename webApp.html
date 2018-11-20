@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.homepage {
+	
+    float: left;
+    text-align: center;
+    width: 500px;
+    margin: 4px;
+    padding: 6px;
+}
+.project {
+	border: 1px solid gray;
+    float: left;
+    text-align: center;
+    width: 500px;
+    margin: 4px;
+    padding: 6px;
+}
+
+.newlistpage {
+	display:none;
+    float: left;
+    text-align: center;
+    width: 500px;
+    margin: 4px;
+    padding: 6px;
+}
+.listpage {
+	display:block;
+    float: left;
+    text-align: center;
+    width: 500px;
+    margin: 4px;
+    padding: 6px;
+}
+.changelistpage {
+	display:none;
+    float: left;
+    text-align: center;
+    width: 120px;
+    margin: 4px;
+    padding: 6px;
+}
+.addpersonpage {
+	display:none;
+    float: left;
+    text-align: center;
+    width: 120px;
+    margin: 4px;
+    padding: 6px;
+}
+.newtaskpage {
+	display:none;
+    float: left;
+    text-align: center;
+    width: 120px;
+    margin: 4px;
+    padding: 6px;
+}
+</style>
+<script>
+function goToPage(page, previousPage) {
+    document.getElementById(previousPage).style.display = "none";
+    document.getElementById(page).style.display = "block";
+}
+
+function addDiv() {
+    
+};
+var idProj = 0;
+function addProject() {
+    $("<div class='listpage' id='"+idProj+"'> <h1>"+$("#Title").val()+"</h1> </div>").appendTo(document.body);
+    document.getElementById(idProj).style.display = "none";
+    var button = document.createElement("input");
+    var id = idProj;
+  	button.id = $("#Title").val();
+    button.value = $("#Title").val();
+  	button.type = "button";
+  	button.onclick= function(){
+      goToPage(id,"homepage");
+    };  
+    var element = document.getElementById("projectList");
+	element.appendChild(button);
+    var backToHomePage = document.createElement("input");
+    backToHomePage.value = "Home Page";
+  	backToHomePage.type = "button";
+  	backToHomePage.onclick= function(){
+      goToPage("homepage",id);
+    };
+    var element2 = document.getElementById(idProj);
+	element2.appendChild(backToHomePage);
+    goToPage('homepage','newlistpage');    
+    idProj = idProj + 1;
+}
+
+</script>
+
+
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<body>
+<div class="homepage" id="homepage"> 
+<h1> CoToDo </h1>
+<h> <div id="projectList"> Project list <br> </div></h><br>
+<button onclick="goToPage('newlistpage','homepage')"> New List</button>
+</div>
+
+<div class="newlistpage" id="newlistpage">
+<h2> New List Page </h2> 
+  Title:<br>
+  <input id="Title" type="text" name="Title"><br>
+  Description:<br>
+  <input type="text" name="Descirption"><br><br>
+  <button onclick="addProject()"> Submit </button>
+</div>
+
+
+<div class="newtaskpage" id="newtaskpage">
+<h2> New task page </h2> 
+</div>
+<div class="changelistpage" id="changelistpage">
+<h2> Change list page </h2> 
+</div>
+<div class="addpersonpage" id="addpersonpage">
+<h2> Add Person </h2>
+</div>
+</body>
+</head>
+</html>
+
