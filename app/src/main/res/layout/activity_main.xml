@@ -6,24 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Hello World"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/newProject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:text="Hi boi!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:onClick="goToAddProject"
+        app:backgroundTint="@color/design_default_color_primary_dark"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:layout_editor_absoluteX="286dp"
+        tools:layout_editor_absoluteY="401dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HEHE"
-        tools:layout_editor_absoluteX="249dp"
-        tools:layout_editor_absoluteY="106dp" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/projectList"
+        android:layout_width="368dp"
+        android:layout_height="385dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/newProject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
