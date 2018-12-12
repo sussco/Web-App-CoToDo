@@ -39,7 +39,6 @@ public class ProjectListFragment extends ListFragment implements AdapterView.OnI
     public ArrayAdapter transformProjectList(){
         Iterator it = MainActivity.projects.iterator();
         List<String> list = new ArrayList<String>();
-        list.add("Refresh");
         while(it.hasNext()){
             Project p = (Project)it.next();
             list.add(p.getTitle());
@@ -59,16 +58,17 @@ public class ProjectListFragment extends ListFragment implements AdapterView.OnI
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        ArrayAdapter adapter = transformProjectList();
+        setListAdapter(adapter);
+        getListView().setOnItemClickListener(this);
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-        if(position == 0) {
-            ArrayAdapter adapter = transformProjectList();
-            setListAdapter(adapter);
-            getListView().setOnItemClickListener(this);
-        }
-        else{
             Intent intent = new Intent(getActivity(), ProjectActivity.class);
             intent.putExtra("id", position - 1);
             startActivity(intent);
-        }
     }
 }
