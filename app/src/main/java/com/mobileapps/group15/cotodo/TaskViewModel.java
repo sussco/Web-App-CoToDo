@@ -7,23 +7,23 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-public class PersonViewModel extends AndroidViewModel {
+public class TaskViewModel extends AndroidViewModel {
 
-    private PersonRepository mRepository;
+    private TaskRepository mRepository;
 
-    private LiveData<List<Person>> mAllPersons;
+    private LiveData<List<Task>> mAllTasks;
 
-    public PersonViewModel(@NonNull Application application) {
+    public TaskViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new PersonRepository(application);
-        mAllPersons = mRepository.getAllPersons();
+        mRepository = new TaskRepository(application);
+        mAllTasks = mRepository.getAllTasks();
     }
 
-    LiveData<List<Person>> getAllPersons() { return mAllPersons;}
+    LiveData<List<Task>> getAllTasks() { return mAllTasks;}
 
-    public void insert(Person person) {mRepository.insert(person);}
+    public void insert(Task task) {mRepository.insert(task);}
 
-    public void update(Person person) {
-        mRepository.update(person);
+    public void update(Task task) {
+        mRepository.update(task);
     }
 }

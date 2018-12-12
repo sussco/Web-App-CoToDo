@@ -6,55 +6,55 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-public class PersonRepository {
+public class TaskRepository {
 
-    private PersonDao mPersonDao;
-    private LiveData<List<Person>> mAllPersons;
+    private TaskDao mTaskDao;
+    private LiveData<List<Task>> mAllTasks;
 
-    PersonRepository(Application application) {
-        PersonRoomDatabase db = PersonRoomDatabase.getDatabase(application);
-        mPersonDao = db.personDao();
-        mAllPersons = mPersonDao.getAllPersons();
+    TaskRepository(Application application) {
+        ProjectRoomDatabase db = ProjectRoomDatabase.getDatabase(application);
+        mTaskDao = db.taskDao();
+        mAllTasks = mTaskDao.getAllTasks();
     }
 
-    LiveData<List<Person>> getAllPersons() {
-        return mAllPersons;
+    LiveData<List<Task>> getAllTasks() {
+        return mAllTasks;
     }
 
 
-    public void insert (Person person) {
-        new insertAsyncTask(mPersonDao).execute(person);
+    public void insert (Task Task) {
+        new insertAsyncTask(mTaskDao).execute(Task);
     }
 
-    public void update (Person person){
-        new updateAsyncTask(mPersonDao).execute(person);
+    public void update (Task Task){
+        new updateAsyncTask(mTaskDao).execute(Task);
     }
 
-    private static class insertAsyncTask extends AsyncTask<Person, Void, Void> {
+    private static class insertAsyncTask extends AsyncTask<Task, Void, Void> {
 
-        private PersonDao mAsyncTaskDao;
+        private TaskDao mAsyncTaskDao;
 
-        insertAsyncTask(PersonDao dao) {
+        insertAsyncTask(TaskDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Person... params) {
+        protected Void doInBackground(final Task... params) {
             mAsyncTaskDao.insert(params[0]);
             return null;
         }
     }
 
-    private static class updateAsyncTask extends AsyncTask<Person, Void, Void> {
+    private static class updateAsyncTask extends AsyncTask<Task, Void, Void> {
 
-        private PersonDao mAsyncTaskDao;
+        private TaskDao mAsyncTaskDao;
 
-        updateAsyncTask(PersonDao dao) {
+        updateAsyncTask(TaskDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Person... params) {
+        protected Void doInBackground(final Task... params) {
             mAsyncTaskDao.update(params[0]);
             return null;
         }

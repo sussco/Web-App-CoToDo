@@ -7,10 +7,12 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Project.class}, version=1)
+@Database(entities = {Project.class, Task.class, Person.class}, version=1)
 public abstract class ProjectRoomDatabase extends RoomDatabase{
 
     public abstract ProjectDao projectDao();
+    public abstract PersonDao personDao();
+    public abstract TaskDao taskDao();
 
     private static volatile ProjectRoomDatabase INSTANCE;
 
@@ -35,4 +37,7 @@ public abstract class ProjectRoomDatabase extends RoomDatabase{
                     super.onOpen(db);
                 }
             };
+
+
+
 }

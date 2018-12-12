@@ -20,8 +20,6 @@ public class Person {
     @ColumnInfo(name = "lastName")
     private String lastName;
 
-
-
     @ColumnInfo(name = "project")
     private UUID Id;
 

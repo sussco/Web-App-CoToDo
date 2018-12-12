@@ -25,22 +25,30 @@ public class MainActivity extends AppCompatActivity {
     public static  List<Person> persons = new LinkedList<Person>();
 
     public static ProjectViewModel mProjectViewModel;
+    public static PersonViewModel mPersonViewModel;
+    public static TaskViewModel mTaskViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mProjectViewModel = ViewModelProviders.of(this).get(ProjectViewModel.class);
-        projects = new LinkedList<Project>();
+        mPersonViewModel = ViewModelProviders.of(this).get(PersonViewModel.class);
+        mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
+
+
+
 
 
         mProjectViewModel.getAllProjects().observe(this, new Observer<List<Project>>() {
             @Override
             public void onChanged(@Nullable final List<Project> list_projets) {
                 // Update the cached copy of the projects.
+                projects = new LinkedList<Project>();
                 for(Project p : list_projets){
                     projects.add(p);
                 }
+
             }
         });
     }

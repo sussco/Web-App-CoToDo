@@ -9,13 +9,13 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 @Dao
-public interface PersonDao {
+public interface TaskDao {
     @Insert
-    void insert(Person person);
+    void insert(Task task);
 
-    @Query("SELECT * from person_table")
-    LiveData<List<Person>> getAllPersons();
+    @Query("SELECT * from task_table")
+    LiveData<List<Task>> getAllTasks();
 
     @Update
-    void update(Person person);
+    void update(Task task);
 }
