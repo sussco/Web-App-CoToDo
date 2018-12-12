@@ -11,10 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="8dp"
         android:onClick="goToProjectActivity"
-        android:text="goback"
+        android:text="go back"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/submit"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,10 +27,10 @@
         android:layout_width="216dp"
         android:layout_height="52dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="128dp"
         android:ems="10"
         android:inputType="text"
-        android:text="First name"
+        android:hint="First name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,13 +44,13 @@
         android:layout_marginBottom="200dp"
         android:ems="10"
         android:inputType="textLongMessage"
-        android:text="Last name"
+        android:hint="Last name"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstName"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/submit"
@@ -60,11 +62,42 @@
         android:layout_marginBottom="8dp"
         android:onClick="submitPerson"
         android:text="@string/submit"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.782"
+        app:layout_constraintHorizontal_bias="0.728"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.856" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/colorPrimaryLight"
+
+        android:text="First name "
+
+        app:layout_constraintBottom_toTopOf="@+id/firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="0.1dp"
+        android:textColor="@color/colorPrimaryLight"
+        android:text="Last name "
+        app:layout_constraintBottom_toTopOf="@+id/lastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -14,21 +14,24 @@
         android:layout_width="192dp"
         android:layout_height="63dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="Project list"
+        android:textAlignment="center"
         android:textSize="29sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="@android:color/black" />
 
     <fragment
         android:id="@+id/fragment1"
         android:name="com.mobileapps.group15.cotodo.ProjectListFragment"
         android:layout_width="match_parent"
-        android:layout_height="438dp"
-        tools:layout_editor_absoluteY="73dp" />
+        android:layout_height="366dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="148dp" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -36,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="58dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="60dp"
         android:onClick="goToAddProject"
         app:backgroundTint="#00574B"
         app:layout_constraintBottom_toBottomOf="parent"

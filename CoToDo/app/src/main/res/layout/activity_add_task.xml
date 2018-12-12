@@ -27,7 +27,9 @@
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="8dp"
         android:onClick="goToProjectActivity"
-        android:text="goback"
+        android:text="go back"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/submit"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +43,7 @@
         android:layout_marginTop="192dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:hint="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
