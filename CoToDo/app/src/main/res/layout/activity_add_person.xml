@@ -30,7 +30,7 @@
         android:layout_marginTop="128dp"
         android:ems="10"
         android:inputType="text"
-        android:text="First name"
+        android:hint="First name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
         android:layout_marginBottom="200dp"
         android:ems="10"
         android:inputType="textLongMessage"
-        android:text="Last name"
+        android:hint="Last name"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -77,7 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/colorPrimaryLight"
+
         android:text="First name "
+
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.257"
@@ -90,6 +93,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="0.1dp"
+        android:textColor="@color/colorPrimaryLight"
         android:text="Last name "
         app:layout_constraintBottom_toTopOf="@+id/lastName"
         app:layout_constraintEnd_toEndOf="parent"
