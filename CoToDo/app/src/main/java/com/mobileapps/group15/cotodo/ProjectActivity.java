@@ -27,6 +27,7 @@ public class ProjectActivity extends AppCompatActivity {
         projectId =  b.getInt("id");
         TextView t = (TextView) findViewById(R.id.projName);
         t.setText(MainActivity.projects.get(projectId).getTitle() + " task list");
+        update();
     }
 
     public void goToMainActivity(View v){
