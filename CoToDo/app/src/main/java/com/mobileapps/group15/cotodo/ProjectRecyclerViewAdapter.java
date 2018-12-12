@@ -31,8 +31,6 @@ public class ProjectRecyclerViewAdapter extends
         Project project = mProjects.get(position);
 
         holder.title.setText(project.getTitle());
-        holder.description.setText(project.getDescription());
-        holder.owner.setText(project.getOwner());
         holder.title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,19 +46,16 @@ public class ProjectRecyclerViewAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView title;
-        public final TextView description;
-        public final TextView owner;
+
 
         public ViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
-            description = view.findViewById(R.id.description);
-            owner = view.findViewById(R.id.owner);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + description.getText() + "'";
+            return super.toString() + " '" ;
         }
     }
 }
