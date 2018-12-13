@@ -55,7 +55,7 @@ public class TaskAdapter extends RecyclerView.Adapter {
         if(!isCompleted){
             //drawable = AppCompatResources.getDrawable(context, R.id.checkbox);
 
-            ((MyViewHolder) holder).checkBox.setImageResource(android.R.drawable.ic_delete);
+            ((MyViewHolder) holder).checkBox.setImageResource(R.mipmap.empty);
         }
         else {
             ((MyViewHolder) holder).checkBox.setImageResource(R.mipmap.baseline_done_black_18dp);
