@@ -12,7 +12,7 @@ public class PersonRepository {
     private LiveData<List<Person>> mAllPersons;
 
     PersonRepository(Application application) {
-        PersonRoomDatabase db = PersonRoomDatabase.getDatabase(application);
+        ProjectRoomDatabase db = ProjectRoomDatabase.getDatabase(application);
         mPersonDao = db.personDao();
         mAllPersons = mPersonDao.getAllPersons();
     }
