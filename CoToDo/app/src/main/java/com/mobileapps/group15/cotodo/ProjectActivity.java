@@ -3,6 +3,8 @@ package com.mobileapps.group15.cotodo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +29,13 @@ public class ProjectActivity extends AppCompatActivity {
         projectId =  b.getInt("id");
         TextView t = (TextView) findViewById(R.id.projName);
         t.setText(MainActivity.projects.get(projectId).getTitle() + " task list");
+        // get the reference of RecyclerView
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        // set a LinearLayoutManager with default orientation
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager); // set LayoutManager to RecyclerView
+        TaskAdapter customAdapter = new TaskAdapter(ProjectActivity.this, MainActivity.projects.get(projectId), projectId);
+        recyclerView.setAdapter(customAdapter); // set the Adapter to RecyclerView
         update();
     }
 
@@ -46,24 +55,10 @@ public class ProjectActivity extends AppCompatActivity {
     }
 
     public void update(){
-        Iterator it = MainActivity.projects.get(projectId).getTasks().iterator();
-        List<String> list = new ArrayList<String>();
-        while(it.hasNext()){
-            Task t = (Task)it.next();
-            list.add(t.getName());
-        }
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-        ListView lv = findViewById(R.id.taskList);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), TaskActivity.class);
-                intent.putExtra("idProject", projectId);
-                intent.putExtra("idTask", position);
-                startActivity(intent);
-            }});
-        }
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        TaskAdapter taskAdapter = new TaskAdapter(ProjectActivity.this, MainActivity.projects.get(projectId), projectId);
+        recyclerView.setAdapter(taskAdapter);
+    }
 
 
     @Override
