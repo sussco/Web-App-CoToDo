@@ -1,4 +1,4 @@
-package com.mobileapps.group15.cotodo;
+/*package com.mobileapps.group15.cotodo;
 
 import android.app.ListFragment;
 import android.content.Context;
@@ -72,3 +72,4 @@ public class ProjectListFragment extends ListFragment implements AdapterView.OnI
             startActivity(intent);
     }
 }
+*/

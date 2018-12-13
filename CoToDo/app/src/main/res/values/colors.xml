@@ -2,8 +2,11 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#006b60</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#d81b60</color>
     <color name="colorPrimaryLight">#d500a291</color>
     <color name="black">#000000</color>
+    <color name="taskred">#6dae1818</color>
+    <color name="taskgreen">#6d1dae18</color>
+    <color name="taskorange">#6de47800</color>
 
 </resources>

@@ -5,11 +5,22 @@
     android:layout_marginLeft="20dp"
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
-    android:background="@drawable/custom_item_project_layout"
-    android:padding="5dp">
+    android:background="@drawable/custom_item_project_layout">
     <!--
     grid items for RecyclerView
     -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle"
+        />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rectangle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rectangle"
+        />
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -17,6 +28,19 @@
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:text="ABCD"
-        android:textColor="#4e4e4e"
+        android:textColor="#232323"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:text="wow"
+        android:textColor="#2e2e2e"
+        android:textSize="12sp" />
+
+
 </RelativeLayout>

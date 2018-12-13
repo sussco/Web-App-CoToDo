@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     public static  List<Project> projects = new LinkedList<Project>();
     public static  List<Person> persons = new LinkedList<Person>();
 
-    ArrayList personNames = new ArrayList<>(Arrays.asList("Person 1"));
 
 
     @Override
@@ -47,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
     public void goToAddProject(View v){
         Intent intent = new Intent(this, AddProject.class);
         startActivityForResult(intent, request_code);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        ProjectAdapter projectAdapter = new ProjectAdapter(MainActivity.this);
+        recyclerView.setAdapter(projectAdapter);
     }
 
 

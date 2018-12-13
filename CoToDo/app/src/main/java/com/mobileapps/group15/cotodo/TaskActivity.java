@@ -20,6 +20,7 @@ public class TaskActivity extends AppCompatActivity {
     private int projectId;
     private int taskId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

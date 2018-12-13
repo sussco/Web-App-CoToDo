@@ -70,17 +70,26 @@ public class Project {
     }
 
     public double giveProgress(){
-        int length = tasks.size();
-        int nCompletedTasks = 0;
+        double length = (double) tasks.size();
+        double nCompletedTasks = 0;
         if(length == 0) {
-            return 1;
+            return 0;
         }
         Iterator it = tasks.iterator();
         while(it.hasNext()){
-            nCompletedTasks += ((((Task) it.next()).isCompleted()) ? 1 : 0);
+            nCompletedTasks += ((((Task) it.next()).isCompleted()) ? 1.0 : 0.0);
         }
-        return ((double) nCompletedTasks) / ((double) length);
+        return (nCompletedTasks /length);
     }
+
+    public int countCompletedTasks(){
+        int nCompletedTasks = 0;
+        Iterator it = tasks.iterator();
+        while(it.hasNext()){
+        nCompletedTasks += ((((Task) it.next()).isCompleted()) ? 1 : 0);
+    }
+        return nCompletedTasks;
+}
 
     public boolean removetask(Task task){
         return this.tasks.remove(task);
