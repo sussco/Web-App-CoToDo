@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
 
 
-
-
-
         mProjectViewModel.getAllProjects().observe(this, new Observer<List<Project>>() {
             @Override
             public void onChanged(@Nullable final List<Project> list_projets) {
