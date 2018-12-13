@@ -47,6 +47,20 @@ public class ProjectActivity extends AppCompatActivity {
                 update();
             }
         });
+
+        MainActivity.mPersonViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(@Nullable final List<Person> list_persons) {
+                // Update the cached copy of the projects.
+                MainActivity.projects.get(projectId).setMembers(new LinkedList<Person>());
+                for(Person p : list_persons){
+                    if(p.getId().equals(MainActivity.projects.get(projectId).getId())) {
+                        MainActivity.projects.get(projectId).addMember(p);
+                    }
+                }
+                update();
+            }
+        });
     }
 
     public void goToMainActivity(View v){
