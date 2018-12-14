@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +54,38 @@ public class MainActivity extends AppCompatActivity {
                     projects.add(p);
                 }
                 onResume();
+            }
+        });
+
+        mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(@Nullable final List<Task> list_tasks) {
+                // Update the cached copy of the projects.
+                for(Project proj : projects){
+                    proj.setTasks(new LinkedList<Task>());
+                    for(Task t : list_tasks){
+                        if(t.getId().equals(proj.getId())) {
+                            proj.addTask(t);
+                        }
+                    }
+                }
+                onResume();
+            }
+        });
+
+        mPersonViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(@Nullable final List<Person> list_persons) {
+                // Update the cached copy of the projects.
+                for(Project proj : projects){
+                    proj.cleanMembers();
+                    for(Person p : list_persons){
+                        if(p.getId().equals(proj.getId())) {
+                            proj.addMember(p);
+                        }
+                    }
+                    proj.updateTasksMembers();
+                }
             }
         });
 

@@ -40,34 +40,7 @@ public class ProjectActivity extends AppCompatActivity {
         TaskAdapter customAdapter = new TaskAdapter(ProjectActivity.this, MainActivity.projects.get(projectId), projectId);
         recyclerView.setAdapter(customAdapter); // set the Adapter to RecyclerView
 
-        MainActivity.mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(@Nullable final List<Task> list_tasks) {
-                // Update the cached copy of the projects.
-                MainActivity.projects.get(projectId).setTasks(new LinkedList<Task>());
-                for(Task t : list_tasks){
-                    if(t.getId().equals(MainActivity.projects.get(projectId).getId())) {
-                        MainActivity.projects.get(projectId).addTask(t);
-                    }
-                }
-                update();
-            }
-        });
 
-        MainActivity.mPersonViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
-            @Override
-            public void onChanged(@Nullable final List<Person> list_persons) {
-                // Update the cached copy of the projects.
-                MainActivity.projects.get(projectId).cleanMembers();
-                for(Person p : list_persons){
-                    if(p.getId().equals(MainActivity.projects.get(projectId).getId())) {
-                        MainActivity.projects.get(projectId).addMember(p);
-                    }
-                }
-                MainActivity.projects.get(projectId).updateTasksMembers();
-                update();
-            }
-        });
         update();
     }
 
