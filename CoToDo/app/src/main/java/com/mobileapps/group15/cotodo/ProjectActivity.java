@@ -1,6 +1,8 @@
 package com.mobileapps.group15.cotodo;
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ProjectActivity extends AppCompatActivity {
@@ -36,6 +39,35 @@ public class ProjectActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager); // set LayoutManager to RecyclerView
         TaskAdapter customAdapter = new TaskAdapter(ProjectActivity.this, MainActivity.projects.get(projectId), projectId);
         recyclerView.setAdapter(customAdapter); // set the Adapter to RecyclerView
+
+        MainActivity.mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(@Nullable final List<Task> list_tasks) {
+                // Update the cached copy of the projects.
+                MainActivity.projects.get(projectId).setTasks(new LinkedList<Task>());
+                for(Task t : list_tasks){
+                    if(t.getId().equals(MainActivity.projects.get(projectId).getId())) {
+                        MainActivity.projects.get(projectId).addTask(t);
+                    }
+                }
+                update();
+            }
+        });
+
+        MainActivity.mPersonViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(@Nullable final List<Person> list_persons) {
+                // Update the cached copy of the projects.
+                MainActivity.projects.get(projectId).cleanMembers();
+                for(Person p : list_persons){
+                    if(p.getId().equals(MainActivity.projects.get(projectId).getId())) {
+                        MainActivity.projects.get(projectId).addMember(p);
+                    }
+                }
+                MainActivity.projects.get(projectId).updateTasksMembers();
+                update();
+            }
+        });
         update();
     }
 
@@ -70,8 +102,8 @@ public class ProjectActivity extends AppCompatActivity {
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
                 Task tas = new Task(data.getStringExtra("taskName"));
-                tas.addPossibleMembers(MainActivity.persons);
-                MainActivity.projects.get(projectId).addTask(tas);
+                tas.setId(MainActivity.projects.get(projectId).getId());
+                MainActivity.mTaskViewModel.insert(tas);
                 update();
             }
         }
@@ -81,12 +113,8 @@ public class ProjectActivity extends AppCompatActivity {
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
                 Person p = new Person(data.getStringExtra("firstName"), data.getStringExtra("lastName"));
-                MainActivity.persons.add(p);
-                Iterator it = MainActivity.projects.iterator();
-                while(it.hasNext()){
-                    ((Project)it.next()).addPerson(p);
-                }
-
+                p.setId(MainActivity.projects.get(projectId).getId());
+                MainActivity.mPersonViewModel.insert(p);
             }
         }
     }
