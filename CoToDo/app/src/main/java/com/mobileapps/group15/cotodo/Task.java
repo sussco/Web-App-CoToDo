@@ -123,4 +123,10 @@ public class Task {
         this.possibleMembers = new LinkedList<>();
         this.members = new LinkedList<>();
     }
+
+    public void removeAllMembersTask(){
+        for(Person p : MainActivity.persons){
+            p.removeTask(this.mIdtask);
+        }
+    }
 }

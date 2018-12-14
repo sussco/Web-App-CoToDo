@@ -86,7 +86,7 @@ public class ProjectActivity extends AppCompatActivity {
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
                 Person p = new Person(data.getStringExtra("firstName"), data.getStringExtra("lastName"));
-                p.setId(MainActivity.projects.get(projectId).getId());
+                p.setIdproject(MainActivity.projects.get(projectId).getId());
                 MainActivity.mPersonViewModel.insert(p);
             }
         }

@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 for(Project proj : projects){
                     proj.cleanMembers();
                     for(Person p : list_persons){
-                        if(p.getId().equals(proj.getId())) {
+                        if(p.getIdproject().equals(proj.getId())) {
                             proj.addMember(p);
                         }
                     }

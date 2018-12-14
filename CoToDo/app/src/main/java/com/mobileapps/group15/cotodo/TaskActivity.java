@@ -86,6 +86,7 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     public void deleteTask(View v){
+        MainActivity.projects.get(projectId).getTasks().get(taskId).removeAllMembersTask();
         MainActivity.mTaskViewModel.delete(MainActivity.projects.get(projectId).getTasks().get(taskId));
         MainActivity.projects.get(projectId).removeTask(MainActivity.projects.get(projectId).getTasks().get(taskId));
         finish();

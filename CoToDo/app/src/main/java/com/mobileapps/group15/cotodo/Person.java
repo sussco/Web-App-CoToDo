@@ -24,7 +24,7 @@ public class Person {
     private String lastName;
 
     @ColumnInfo(name = "project")
-    private UUID Id;
+    private UUID Idproject;
 
     @ColumnInfo(name = "tasks")
     @TypeConverters(ArrayTypeConverter.class)
@@ -55,12 +55,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public UUID getId() {
-        return Id;
+    public UUID getIdproject() {
+        return Idproject;
     }
 
-    public void setId(UUID id) {
-        Id = id;
+    public void setIdproject(UUID id) {
+        Idproject = id;
     }
 
     public List<UUID> getTasks() {
