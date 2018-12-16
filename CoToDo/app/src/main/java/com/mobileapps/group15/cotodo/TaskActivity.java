@@ -97,6 +97,7 @@ public class TaskActivity extends AppCompatActivity {
 
     public void doneTask(View v){
         // todo : mettre done à la task (completed)
+        MainActivity.projects.get(projectId).getTasks().get(taskId).setDone(true);
         FloatingActionButton b = findViewById(R.id.undoTaskButton);
         b.setVisibility(View.VISIBLE);
         b.setClickable(true);
