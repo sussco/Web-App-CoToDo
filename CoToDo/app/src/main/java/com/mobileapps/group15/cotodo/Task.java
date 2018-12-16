@@ -121,6 +121,7 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+        MainActivity.mTaskViewModel.update(this);
     }
 
     public void cleanAllMembers(){
