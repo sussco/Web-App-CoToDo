@@ -4,7 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +34,7 @@ public class TaskActivity extends AppCompatActivity {
         Bundle b  = getIntent().getExtras();
         projectId =  b.getInt("idProject");
         taskId = b.getInt("idTask");
+        Log.e("tskMembers",MainActivity.projects.get(projectId).getTasks().get(taskId).getPossibleMembers().toString());
         t.setText(MainActivity.projects.get(projectId).getTasks().get(taskId).getName());
         update();
     }
@@ -79,6 +82,35 @@ public class TaskActivity extends AppCompatActivity {
                 update();
             }});
 
+        if(MainActivity.projects.get(projectId).getTasks().get(taskId).isCompleted()){
+            FloatingActionButton b = findViewById(R.id.undoTaskButton);
+            b.setVisibility(View.VISIBLE);
+            b.setClickable(true);
+            TextView t = findViewById(R.id.undoDoneTask);
+            t.setVisibility(View.VISIBLE);
+
+
+            b = findViewById(R.id.doneTaskButton);
+            b.setVisibility(View.INVISIBLE);
+            b.setClickable(false);
+            t = findViewById(R.id.doneTaskText);
+            t.setVisibility(View.INVISIBLE);
+        }
+        else{
+            FloatingActionButton b = findViewById(R.id.doneTaskButton);
+            b.setVisibility(View.VISIBLE);
+            b.setClickable(true);
+            TextView t = findViewById(R.id.doneTaskText);
+            t.setVisibility(View.VISIBLE);
+
+
+            b = findViewById(R.id.undoTaskButton);
+            b.setVisibility(View.INVISIBLE);
+            b.setClickable(false);
+            t = findViewById(R.id.undoDoneTask);
+            t.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     public void goToProjectActivity(View v){
@@ -90,5 +122,17 @@ public class TaskActivity extends AppCompatActivity {
         MainActivity.mTaskViewModel.delete(MainActivity.projects.get(projectId).getTasks().get(taskId));
         MainActivity.projects.get(projectId).removeTask(MainActivity.projects.get(projectId).getTasks().get(taskId));
         finish();
+    }
+
+
+    public void doneTask(View v){
+        MainActivity.projects.get(projectId).getTasks().get(taskId).setDone(true);
+        update();
+    }
+
+    public void undoTask(View v){
+        MainActivity.projects.get(projectId).getTasks().get(taskId).setDone(false);
+        update();
+
     }
 }

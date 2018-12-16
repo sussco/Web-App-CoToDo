@@ -10,8 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<Task> list_tasks) {
                 // Update the cached copy of the projects.
+                Log.e("onChanged","Task");
                 for(Project proj : projects){
                     proj.setTasks(new LinkedList<Task>());
                     for(Task t : list_tasks){
@@ -68,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             proj.addTask(t);
                         }
                     }
+                    proj.updateTasksMembers();
                 }
                 onResume();
             }
@@ -77,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<Person> list_persons) {
                 // Update the cached copy of the projects.
+                Log.e("onChanged","Person");
                 for(Project proj : projects){
                     proj.cleanMembers();
                     for(Person p : list_persons){
@@ -84,11 +91,13 @@ public class MainActivity extends AppCompatActivity {
                             proj.addMember(p);
                         }
                     }
-                    proj.updateTasksMembers();
                 }
             }
         });
-
+        if(!projects.isEmpty()){
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.INVISIBLE);
+        }
     }
 
    /* List<Project> dummyProjects = new ArrayList<Project>(0);
@@ -108,6 +117,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ProjectAdapter projectAdapter = new ProjectAdapter(MainActivity.this);
         recyclerView.setAdapter(projectAdapter);
+        if(!projects.isEmpty()){
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.INVISIBLE);
+        }
+        else{
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -128,5 +145,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ProjectAdapter projectAdapter = new ProjectAdapter(MainActivity.this);
         recyclerView.setAdapter(projectAdapter); // set the Adapter to RecyclerView
+        if(!projects.isEmpty()){
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.INVISIBLE);
+        }
     }
 }

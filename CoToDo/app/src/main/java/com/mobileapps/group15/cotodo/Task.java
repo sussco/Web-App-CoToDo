@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.*;
 
@@ -101,6 +102,10 @@ public class Task {
         Id = id;
     }
 
+    public Person getLastMember(){
+        return members.get(members.size()-1);
+    }
+
     public List<Person> getMembers() {
         return members;
     }
@@ -111,12 +116,22 @@ public class Task {
 
     public List <Person> getPossibleMembers(){return possibleMembers;}
 
+    public void setPossibleMembers(List<Person> possibleMembers) {
+        this.possibleMembers = possibleMembers;
+    }
+
     public boolean isCompleted() {
         return completed;
     }
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public void setDone(boolean done){
+        this.completed = done;
+        MainActivity.mTaskViewModel.update(this);
+        Log.e("Task","Done : "+String.valueOf(done));
     }
 
     public void cleanAllMembers(){

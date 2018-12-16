@@ -45,6 +45,25 @@ public class AddProject extends AppCompatActivity {
             }
         });
 
+        mTitleField = (EditText) findViewById(R.id.projectDescription);
+        mTitleField.setText(mProject.getDescription());
+        mTitleField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s, int start, int count, int after) {
+// This space intentionally left blank
+            }
+            @Override
+            public void onTextChanged(
+                    CharSequence s, int start, int before, int count) {
+                mProject.setDescription(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+// This one too
+            }
+        });
+
     }
 
     public void goToMainActivity(View v){

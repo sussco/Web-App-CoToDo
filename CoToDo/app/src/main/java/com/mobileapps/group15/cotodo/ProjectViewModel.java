@@ -26,4 +26,8 @@ public class ProjectViewModel extends AndroidViewModel {
     public void update(Project project) {
         mRepository.update(project);
     }
+
+    public void delete(Project project) {
+        mRepository.delete(project);
+    }
 }

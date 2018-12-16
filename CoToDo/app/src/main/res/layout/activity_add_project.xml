@@ -96,7 +96,7 @@
         android:textColor="@color/colorPrimaryLight"
         app:layout_constraintBottom_toTopOf="@+id/projectTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

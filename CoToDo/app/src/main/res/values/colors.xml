@@ -8,5 +8,6 @@
     <color name="taskred">#6dae1818</color>
     <color name="taskgreen">#6d1dae18</color>
     <color name="taskorange">#6de47800</color>
+    <color name="darkgray">#6b6b6b</color>
 
 </resources>
