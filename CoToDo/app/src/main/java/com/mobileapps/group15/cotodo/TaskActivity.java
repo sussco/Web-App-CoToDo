@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -92,5 +93,40 @@ public class TaskActivity extends AppCompatActivity {
         MainActivity.mTaskViewModel.delete(MainActivity.projects.get(projectId).getTasks().get(taskId));
         MainActivity.projects.get(projectId).removeTask(MainActivity.projects.get(projectId).getTasks().get(taskId));
         finish();
+    }
+
+    public void doneTask(View v){
+        // todo : mettre done à la task (completed)
+        FloatingActionButton b = findViewById(R.id.undoTaskButton);
+        b.setVisibility(View.VISIBLE);
+        b.setClickable(true);
+        TextView t = findViewById(R.id.undoDoneTask);
+        t.setVisibility(View.VISIBLE);
+
+
+        b = findViewById(R.id.doneTaskButton);
+        b.setVisibility(View.INVISIBLE);
+        b.setClickable(false);
+        t = findViewById(R.id.doneTaskText);
+        t.setVisibility(View.INVISIBLE);
+    }
+
+    public void undoTask(View v){
+        // todo : mettre false done à la task (completed)
+        // Changing the button
+
+        FloatingActionButton b = findViewById(R.id.doneTaskButton);
+        b.setVisibility(View.VISIBLE);
+        b.setClickable(true);
+        TextView t = findViewById(R.id.doneTaskText);
+        t.setVisibility(View.VISIBLE);
+
+
+        b = findViewById(R.id.undoTaskButton);
+        b.setVisibility(View.INVISIBLE);
+        b.setClickable(false);
+        t = findViewById(R.id.undoDoneTask);
+        t.setVisibility(View.INVISIBLE);
+
     }
 }
