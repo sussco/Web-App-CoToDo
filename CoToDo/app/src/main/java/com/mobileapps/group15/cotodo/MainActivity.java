@@ -12,6 +12,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        if(!projects.isEmpty()){
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.INVISIBLE);
+        }
     }
 
    /* List<Project> dummyProjects = new ArrayList<Project>(0);
@@ -108,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ProjectAdapter projectAdapter = new ProjectAdapter(MainActivity.this);
         recyclerView.setAdapter(projectAdapter);
+        if(!projects.isEmpty()){
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.INVISIBLE);
+        }
+        else{
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -128,5 +142,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ProjectAdapter projectAdapter = new ProjectAdapter(MainActivity.this);
         recyclerView.setAdapter(projectAdapter); // set the Adapter to RecyclerView
+        if(!projects.isEmpty()){
+            TextView tv = findViewById(R.id.noProject);
+            tv.setVisibility(View.INVISIBLE);
+        }
     }
 }

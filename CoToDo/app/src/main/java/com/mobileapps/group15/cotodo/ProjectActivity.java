@@ -40,6 +40,38 @@ public class ProjectActivity extends AppCompatActivity {
         TaskAdapter customAdapter = new TaskAdapter(ProjectActivity.this, MainActivity.projects.get(projectId), projectId);
         recyclerView.setAdapter(customAdapter); // set the Adapter to RecyclerView
 
+        MainActivity.mTaskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(@Nullable final List<Task> list_tasks) {
+                // Update the cached copy of the projects.
+                for(Project proj : MainActivity.projects){
+                    proj.setTasks(new LinkedList<Task>());
+                    for(Task t : list_tasks){
+                        if(t.getId().equals(proj.getId())) {
+                            proj.addTask(t);
+                        }
+                    }
+                }
+                update();
+            }
+        });
+        MainActivity.mPersonViewModel.getAllPersons().observe(this, new Observer<List<Person>>() {
+            @Override
+            public void onChanged(@Nullable final List<Person> list_persons) {
+                // Update the cached copy of the projects.
+                for(Project proj : MainActivity.projects){
+                    proj.cleanMembers();
+                    for(Person p : list_persons){
+                        if(p.getIdproject().equals(proj.getId())) {
+                            proj.addMember(p);
+                        }
+                    }
+                    proj.updateTasksMembers();
+                }
+                update();
+            }
+        });
+
 
         update();
     }
@@ -65,6 +97,11 @@ public class ProjectActivity extends AppCompatActivity {
         recyclerView.setAdapter(taskAdapter);
     }
 
+    public void removeProject(View v){
+        MainActivity.mProjectViewModel.delete(MainActivity.projects.get(projectId));
+        goToMainActivity(v);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -77,7 +114,6 @@ public class ProjectActivity extends AppCompatActivity {
                 Task tas = new Task(data.getStringExtra("taskName"));
                 tas.setId(MainActivity.projects.get(projectId).getId());
                 MainActivity.mTaskViewModel.insert(tas);
-                update();
             }
         }
         if (requestCode == request_code2) {
@@ -90,5 +126,6 @@ public class ProjectActivity extends AppCompatActivity {
                 MainActivity.mPersonViewModel.insert(p);
             }
         }
+        update();
     }
 }

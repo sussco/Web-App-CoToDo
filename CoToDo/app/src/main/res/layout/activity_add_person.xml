@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".AddPerson">
 
+    <TextView
+        android:id="@+id/adPro3"
+        android:layout_width="192dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:text="Add a person"
+        android:textColor="@android:color/black"
+        android:textSize="29sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -27,10 +41,10 @@
         android:layout_width="216dp"
         android:layout_height="52dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="152dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="First name"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,18 +53,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="85dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="84dp"
-        android:layout_marginBottom="200dp"
         android:ems="10"
-        android:inputType="textLongMessage"
         android:hint="Last name"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:inputType="textLongMessage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
     <Button
         android:id="@+id/submit"
@@ -77,13 +88,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/colorPrimaryLight"
-
         android:text="First name "
+
+        android:textColor="@color/colorPrimaryLight"
 
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

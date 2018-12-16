@@ -30,6 +30,10 @@ public class ProjectRepository {
         new updateAsyncTask(mProjectDao).execute(project);
     }
 
+    public void delete (Project project) {
+        new deleteAsyncTask(mProjectDao).execute(project);
+    }
+
     private static class insertAsyncTask extends AsyncTask<Project, Void, Void> {
 
         private ProjectDao mAsyncTaskDao;
@@ -56,6 +60,21 @@ public class ProjectRepository {
         @Override
         protected Void doInBackground(final Project... params) {
             mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<Project, Void, Void> {
+
+        private ProjectDao mAsyncTaskDao;
+
+        deleteAsyncTask(ProjectDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Project... params) {
+            mAsyncTaskDao.delete(params[0]);
             return null;
         }
     }
