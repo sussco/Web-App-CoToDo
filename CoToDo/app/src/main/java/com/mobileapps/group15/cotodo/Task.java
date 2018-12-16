@@ -102,6 +102,10 @@ public class Task {
         Id = id;
     }
 
+    public Person getLastMember(){
+        return members.get(members.size()-1);
+    }
+
     public List<Person> getMembers() {
         return members;
     }

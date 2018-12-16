@@ -7,11 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,8 +36,13 @@ public class ProjectActivity extends AppCompatActivity {
         Bundle b  = getIntent().getExtras();
         projectId =  b.getInt("id");
         TextView t = (TextView) findViewById(R.id.projName);
-        t.setText(MainActivity.projects.get(projectId).getTitle() + " task list");
+        t.setText(MainActivity.projects.get(projectId).getTitle());
+        t.setTextColor(getResources().getColor(R.color.black));
+        t = findViewById(R.id.Description);
+        t.setText(MainActivity.projects.get(projectId).getDescription());
+
         // get the reference of RecyclerView
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // set a LinearLayoutManager with default orientation
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -72,6 +82,42 @@ public class ProjectActivity extends AppCompatActivity {
                 update();
             }
         });
+        TextView title =  findViewById(R.id.projName);
+        title.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s, int start, int count, int after) {
+// This space intentionally left blank
+            }
+            @Override
+            public void onTextChanged(
+                    CharSequence s, int start, int before, int count) {
+                // todo faire set title du projet bd.setTitle(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+// This one too
+            }
+        });
+
+        EditText description =  findViewById(R.id.Description);
+        description.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s, int start, int count, int after) {
+// This space intentionally left blank
+            }
+            @Override
+            public void onTextChanged(
+                    CharSequence s, int start, int before, int count) {
+                // todo faire set description du projet bd  .setTitle(s.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+// This one too
+
+            }
+        });
 
 
         update();
@@ -79,6 +125,25 @@ public class ProjectActivity extends AppCompatActivity {
 
     public void goToMainActivity(View v){
         finish();
+    }
+
+    public void layClick(View v){
+        EditText description =  findViewById(R.id.Description);
+        description.setEnabled(false);
+        description.setEnabled(true);
+        EditText title =  findViewById(R.id.projName);
+        title.setEnabled(false);
+        title.setEnabled(true);
+    }
+
+    public void modifyDescription(View v){
+        EditText description =  findViewById(R.id.Description);
+        description.setEnabled(true);
+    }
+
+    public void modifyTitle(View v){
+        EditText title =  findViewById(R.id.projName);
+        title.setEnabled(true);
     }
 
     public void goToAddPerson(View v){

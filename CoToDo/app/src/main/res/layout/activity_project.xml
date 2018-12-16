@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:onClick="layClick"
     tools:context=".ProjectActivity">
 
 
@@ -19,12 +21,17 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="190dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="38dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="38dp"
             android:layout_marginRight="40dp"
-            android:layout_marginBottom="150dp" />
+            android:layout_marginBottom="183dp" />
 
     </RelativeLayout>
 
@@ -45,6 +52,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.854"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="191dp"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        android:inputType="none"
+        android:onClick="modifyDescription"
+        android:text="Project description "
+        android:textAlignment="center"
+        android:textColor="@color/darkgray"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lay"
+        app:layout_constraintVertical_bias="0.18" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/removeProject"
@@ -148,7 +179,7 @@
         app:layout_constraintVertical_bias="0.854"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
+    <EditText
         android:id="@+id/projName"
         android:layout_width="247dp"
         android:layout_height="58dp"
@@ -158,6 +189,10 @@
         android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:textSize="29sp"
+        android:inputType="none"
+        android:background="@null"
+        android:textColor="@color/black"
+        android:onClick="modifyTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
