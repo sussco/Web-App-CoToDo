@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "170084503698",
+    "firebase_url": "https://cotodo-294d1.firebaseio.com",
+    "project_id": "cotodo-294d1",
+    "storage_bucket": "cotodo-294d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170084503698:android:3c2b9dd50588c917",
+        "android_client_info": {
+          "package_name": "com.mobileapps.group15.cotodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170084503698-9hdpuln46k45153cf96ms7sjvuau9cr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobileapps.group15.cotodo",
+            "certificate_hash": "a1e5f86ddac0d47c23c452135df4e1695036e3d0"
+          }
+        },
+        {
+          "client_id": "170084503698-6prdm0ses4qi607bhtkav28hkskmqmjv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAopMB_-GrBOo6BBVai76f8Bn3OjPaSmt4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170084503698-6prdm0ses4qi607bhtkav28hkskmqmjv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

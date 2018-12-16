@@ -27,7 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".ProjectActivity"></activity>
+        <activity android:name=".ProjectActivity" />
         <activity
             android:name=".AddTask"
             android:parentActivityName=".ProjectActivity">
@@ -55,6 +55,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ProjectActivity" />
         </activity>
+        <activity android:name=".SignedInActivity" />
+        <activity android:name=".AuthActivity"></activity>
     </application>
 
 </manifest>
