@@ -60,6 +60,13 @@ public class TaskAdapter extends RecyclerView.Adapter {
         else {
             ((MyViewHolder) holder).checkBox.setImageResource(R.mipmap.baseline_done_black_18dp);
         }
+        if(!project.getTasks().get(position).getMembers().isEmpty()){
+            ((MyViewHolder) holder).initials.setText(project.getTasks().get(position).getMembers().get(0).getFirstName().toUpperCase().substring(0,1)
+                    + project.getTasks().get(position).getMembers().get(0).getLastName().toUpperCase().substring(0,1)
+                    + ((project.getTasks().get(position).getMembers().size() > 1)? "+" : ""));
+        }
+        ((MyViewHolder) holder).initials.setTextColor(R.color.black);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
