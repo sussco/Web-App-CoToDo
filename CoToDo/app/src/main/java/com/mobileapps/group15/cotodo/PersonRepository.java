@@ -25,7 +25,9 @@ public class PersonRepository {
     public void insert (Person person) {
         new insertAsyncTask(mPersonDao).execute(person);
     }
-
+    public void delete (Person person) {
+        new deleteAsyncTask(mPersonDao).execute(person);
+    }
     public void update (Person person){
         new updateAsyncTask(mPersonDao).execute(person);
     }
@@ -41,6 +43,21 @@ public class PersonRepository {
         @Override
         protected Void doInBackground(final Person... params) {
             mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<Person, Void, Void> {
+
+        private PersonDao mAsyncTaskDao;
+
+        deleteAsyncTask(PersonDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Person... params) {
+            mAsyncTaskDao.delete(params[0]);
             return null;
         }
     }

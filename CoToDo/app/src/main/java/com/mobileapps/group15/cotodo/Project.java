@@ -120,11 +120,6 @@ public class Project {
         return nCompletedTasks;
 }
 
-    public boolean removetask(Task task){
-        return this.tasks.remove(task);
-    }
-
-
 
     @Override
     public String toString() {
@@ -144,5 +139,17 @@ public class Project {
     }
 
     public void cleanMembers(){this.members = new LinkedList<Person>();}
+
+    public void cleanProject(){
+        for(Task t : tasks){
+            t.removeAllMembersTask();
+            MainActivity.mTaskViewModel.delete(t);
+            tasks.remove(t);
+        }
+        for(Person p: members){
+            MainActivity.mPersonViewModel.delete(p);
+            members.remove(p);
+        }
+    }
 
 }

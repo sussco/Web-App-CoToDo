@@ -26,4 +26,9 @@ public class PersonViewModel extends AndroidViewModel {
     public void update(Person person) {
         mRepository.update(person);
     }
+
+    public void delete(Person person) {
+        mRepository.delete(person);
+    }
+
 }

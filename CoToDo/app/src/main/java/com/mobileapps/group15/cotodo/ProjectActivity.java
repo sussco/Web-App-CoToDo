@@ -98,7 +98,10 @@ public class ProjectActivity extends AppCompatActivity {
     }
 
     public void removeProject(View v){
-        MainActivity.mProjectViewModel.delete(MainActivity.projects.get(projectId));
+        MainActivity.projects.get(projectId).cleanProject();
+        Project p = MainActivity.projects.get(projectId);
+        MainActivity.projects.remove(p);
+        MainActivity.mProjectViewModel.delete(p);
         goToMainActivity(v);
     }
 
