@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +33,7 @@ public class TaskActivity extends AppCompatActivity {
         Bundle b  = getIntent().getExtras();
         projectId =  b.getInt("idProject");
         taskId = b.getInt("idTask");
+        Log.e("tskMembers",MainActivity.projects.get(projectId).getTasks().get(taskId).getPossibleMembers().toString());
         t.setText(MainActivity.projects.get(projectId).getTasks().get(taskId).getName());
         update();
     }

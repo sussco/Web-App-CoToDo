@@ -40,6 +40,9 @@ public class Project {
     public UUID getId() {
         return mId;
     }
+    public List<Person> getMembers() {
+        return members;
+    }
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;

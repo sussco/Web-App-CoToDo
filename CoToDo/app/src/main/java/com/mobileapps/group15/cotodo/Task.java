@@ -111,6 +111,10 @@ public class Task {
 
     public List <Person> getPossibleMembers(){return possibleMembers;}
 
+    public void setPossibleMembers(List<Person> possibleMembers) {
+        this.possibleMembers = possibleMembers;
+    }
+
     public boolean isCompleted() {
         return completed;
     }

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<Task> list_tasks) {
                 // Update the cached copy of the projects.
+                Log.e("onChanged","Task");
                 for(Project proj : projects){
                     proj.setTasks(new LinkedList<Task>());
                     for(Task t : list_tasks){
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             proj.addTask(t);
                         }
                     }
+                    proj.updateTasksMembers();
                 }
                 onResume();
             }
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<Person> list_persons) {
                 // Update the cached copy of the projects.
+                Log.e("onChanged","Person");
                 for(Project proj : projects){
                     proj.cleanMembers();
                     for(Person p : list_persons){
@@ -87,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                             proj.addMember(p);
                         }
                     }
-                    proj.updateTasksMembers();
                 }
             }
         });
