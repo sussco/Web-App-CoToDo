@@ -1,20 +1,37 @@
 package com.mobileapps.group15.cotodo;
 
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
+@Entity(tableName = "project_table")
+@TypeConverters({UUIDTypeConverter.class})
 public class Project {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
     private UUID mId;
+    @ColumnInfo(name = "title")
     private String mTitle;
+    @ColumnInfo(name = "description")
     private String mDescription;
+    @ColumnInfo(name = "owner")
     private String mOwner;
+    @Ignore
     private List<Person> members = new LinkedList<Person>();
+    @Ignore
     private List<Task> tasks = new LinkedList<Task>();
-
 
     public String getTitle() { return mTitle; }
     public List<Task> getTasks(){ return tasks;}
@@ -23,7 +40,19 @@ public class Project {
     public UUID getId() {
         return mId;
     }
+    public List<Person> getMembers() {
+        return members;
+    }
 
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+    public void setMembers(List<Person> members) {
+        this.members = members;
+    }
+    public void setId(@NonNull UUID mId) {
+        this.mId = mId;
+    }
     public void setTitle(String title) { this.mTitle = title; }
     public void setDescription(String description) { this.mDescription = description; }
     public void setOwner(String owner) { this.mOwner = owner; }
@@ -51,6 +80,17 @@ public class Project {
         this.members.add(person);
     }
 
+    public void updateTasksMembers(){
+        Iterator it = tasks.iterator();
+        while(it.hasNext()){
+            Task t = (Task)it.next();
+            t.cleanAllMembers();
+            for(Person p : members){
+                t.addPerson(p);
+            }
+        }
+    }
+
     public boolean addTask(Task task){
         Iterator it = tasks.iterator();
         while(it.hasNext()){
@@ -59,14 +99,6 @@ public class Project {
             }
         }
         return this.tasks.add(task);
-    }
-
-    public boolean addPerson(Person p){
-        Iterator it = tasks.iterator();
-        while(it.hasNext()){
-            ((Task)it.next()).addPossibleMember(p);
-        }
-        return true;
     }
 
     public double giveProgress(){
@@ -91,11 +123,6 @@ public class Project {
         return nCompletedTasks;
 }
 
-    public boolean removetask(Task task){
-        return this.tasks.remove(task);
-    }
-
-
 
     @Override
     public String toString() {
@@ -109,4 +136,23 @@ public class Project {
         else
             return false;
     }
+
+    public boolean removeTask(Task task){
+        return this.tasks.remove(task);
+    }
+
+    public void cleanMembers(){this.members = new LinkedList<Person>();}
+
+    public void cleanProject(){
+        for(Task t : tasks){
+            t.removeAllMembersTask();
+            MainActivity.mTaskViewModel.delete(t);
+            tasks.remove(t);
+        }
+        for(Person p: members){
+            MainActivity.mPersonViewModel.delete(p);
+            members.remove(p);
+        }
+    }
+
 }

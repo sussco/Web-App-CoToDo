@@ -70,6 +70,12 @@ public class AddPerson extends AppCompatActivity {
 
     public void submitPerson(View v){
             Intent data = new Intent();
+            if(mPerson.getFirstName()== null) {
+                mPerson.setFirstName("NA");
+            }
+            if(mPerson.getLastName() == null) {
+                 mPerson.setLastName("NA");
+            }
             data.putExtra("firstName", mPerson.getFirstName());
             data.putExtra("lastName", mPerson.getLastName());
             setResult(RESULT_OK, data);
