@@ -14,9 +14,12 @@
         android:id="@+id/lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProjectActivity"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ProjectActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -187,12 +190,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:textAlignment="center"
-        android:textSize="29sp"
-        android:inputType="none"
         android:background="@null"
-        android:textColor="@color/black"
+        android:inputType="none"
         android:onClick="modifyTitle"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="29sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

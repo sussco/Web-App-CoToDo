@@ -65,10 +65,10 @@ public class Project {
         mOwner = owner;
     }
     public Project() {
-        mId = UUID.randomUUID();
+        /*mId = UUID.randomUUID();
         mTitle = null;
         mDescription = null;
-        mOwner = null;
+        mOwner = null;*/
     }
 
     public boolean removeMember(Person person){
