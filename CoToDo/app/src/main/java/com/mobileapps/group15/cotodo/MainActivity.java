@@ -162,4 +162,9 @@ public class MainActivity extends AppCompatActivity {
             tv.setVisibility(View.INVISIBLE);
         }
     }
+
+    public void toOptions(View view) {
+        startActivity(new Intent(this, SignedInActivity.class));
+        finish();
+    }
 }
