@@ -70,4 +70,9 @@ public class SignedInActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void goToMainActivity(View view) {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
 }

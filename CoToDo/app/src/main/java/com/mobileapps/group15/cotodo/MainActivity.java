@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +26,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     static final int request_code = 1;
     public static  List<Project> projects = new LinkedList<Project>();
@@ -36,7 +40,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_main);
+
+        FirebaseUser currentUser =
+                FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser == null) {
+            startActivity(new Intent(this, AuthActivity.class));
+            finish();
+            return;
+        }
+
         mProjectViewModel = ViewModelProviders.of(this).get(ProjectViewModel.class);
         mPersonViewModel = ViewModelProviders.of(this).get(PersonViewModel.class);
         mTaskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
@@ -100,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
    /* List<Project> dummyProjects = new ArrayList<Project>(0);
         dummyProjects.add(new Project("0", "Project1", "a project", "Group 15"));
         dummyProjects.add(new Project("1", "Project2", "another project", "Group 15"));
@@ -114,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        Log.d(TAG, "onResume() called");
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ProjectAdapter projectAdapter = new ProjectAdapter(MainActivity.this);
         recyclerView.setAdapter(projectAdapter);
@@ -127,6 +148,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
 
 
     @Override
@@ -149,5 +187,9 @@ public class MainActivity extends AppCompatActivity {
             TextView tv = findViewById(R.id.noProject);
             tv.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void toOptions(View view) {
+        startActivity(new Intent(this, SignedInActivity.class));
     }
 }

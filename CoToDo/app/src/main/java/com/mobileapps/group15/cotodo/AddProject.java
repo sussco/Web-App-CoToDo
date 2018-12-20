@@ -10,18 +10,27 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class AddProject extends AppCompatActivity {
 
+    private DatabaseReference mDatabase;
+    private DatabaseReference projectsNode;
 
     private Project mProject;
     private EditText mTitleField;
     private EditText mDescriptionField;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project);
@@ -71,6 +80,11 @@ public class AddProject extends AppCompatActivity {
     }
 
     public void submitProject(View v){
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        projectsNode = mDatabase.child("projects");
+        DatabaseReference newProjectRef = projectsNode.push();
+        //String projectId = newProjectRef.getKey();
         Iterator it = MainActivity.projects.iterator();
         boolean projectNameTaken = false;
         while (it.hasNext()){
@@ -84,6 +98,7 @@ public class AddProject extends AppCompatActivity {
             data.putExtra("projectTitle", mProject.getTitle());
             data.putExtra("projectDescription", mProject.getDescription());
             setResult(RESULT_OK, data);
+            newProjectRef.setValue(mProject);
 //---close the activity---
             finish();
         }

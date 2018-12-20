@@ -1,5 +1,6 @@
 package com.mobileapps.group15.cotodo;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class TaskActivity extends AppCompatActivity {
         update();
     }
 
+    @SuppressLint("RestrictedApi")
     public void update(){
         Iterator it = MainActivity.projects.get(projectId).getTasks().get(taskId).getMembers().iterator();
         List<String> list = new ArrayList<String>();
