@@ -59,7 +59,7 @@
         android:clickable="true"
         android:onClick="goToMainActivity"
         android:textAlignment="center"
-        android:src="@mipmap/murray"
+        android:src="@mipmap/katten"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
